@@ -1,0 +1,48 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+section
+{
+    display: flex;
+    flex-direction: row;
+}
+h2
+{
+    margin-top: 25px;
+    text-align: center;
+}
+.post-html
+{
+    width: 300px;
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-right: 1px solid black;
+}
+.postit
+{
+    margin-top: 20px;
+    width: 200px;
+    height: 100px;
+}
+.post-js
+{
+    width: 100%;    
+    display: flex;
+    flex-direction: column;
+}
+.post-1
+{
+    background-color: #BF1736;
+}
+.post-2
+{
+    background-color: #0D1440;
+}
+.post-3
+{
+    background-color: #1438A6;
+}
