@@ -1,39 +1,64 @@
 /* Variables Global */
-var x;
-var y;
+let x;
+let y;
+let i = 0;
+let onBouge = false;
 
 /* Objet Postit */
-class PostIt {
-    x;
-    y;
+class PostIt 
+{
+    posX;
+    posY;
     couleurTexte;
     couleurBackground;
 
-    constructor(x, y, couleurTexte, couleurBackground) {
-        this.x = x;
-        this.y = y;
+    constructor(posX, posY, couleurTexte, couleurBackground, numPosIt) 
+    {
+        this.posX = posX;
+        this.posY = posY;
+        this.numPosIt = numPosIt;
         this.couleurTexte = couleurTexte;
         this.couleurBackground = couleurBackground;
     }
 
-    changePlace(x, y) {
-        this.x = x;
-        this.y = y;
+    changePlace(x, y) 
+    {
+        this.posX = x;
+        this.posY = y;
     }
 
-    affichePostit() {
-        var zone = document.querySelector(".post-js");
-        let monElem = document.createElement('div')
-        monElem.style.position = "fixed";
-        monElem.style.top = this.y + "px";
-        monElem.style.left = this.x + "px";
-        monElem.style.width = "150px";
-        monElem.style.height = "150px";
-        monElem.style.color = this.couleurTexte;
-        monElem.style.backgroundColor = this.couleurBackground;
-        monElem.style.padding = "5px"; 
-        monElem.innerHTML = "Je suis un objet de test";
-        zone.appendChild(monElem);
+    affichePostit() 
+    {
+        let postit;
+
+        // Si le Postit n'existe pas on le crée
+        if (document.getElementById('postit') == null) 
+            postit = document.createElement('div');
+        else
+        {
+            postit = document.getElementById('postit');
+            postit.classList.add('postit-js');
+        }
+
+        // Paramétrage du Postit
+        postit.id = "postIt" + this.numPosIt;
+        postit.style.position = "fixed";
+        postit.style.top = this.posY + "px";
+        postit.style.left = this.posX + "px";
+        postit.style.width = "150px";
+        postit.style.height = "150px";
+        postit.style.color = this.couleurTexte;
+        postit.style.backgroundColor = this.couleurBackground;
+        postit.style.padding = "5px"; 
+        postit.innerHTML = "Je suis un objet de test";
+
+        // Ajout du Postit dans la page 
+        zone.appendChild(postit);
+
+        // Action lorsqu'on clique sur le postit
+        postit.addEventListener('click', () => {
+            onBouge = true;
+        })
     }
 }
 
@@ -42,25 +67,24 @@ class PostIt {
 var postit1 = document.querySelector(".post-1");
 var postit2 = document.querySelector(".post-2");
 var postit3 = document.querySelector(".post-3");
-
 var zone = document.querySelector(".post-js");
 
-document.body.addEventListener('mousemove', function souris(event)
+zone.addEventListener('mousemove', function souris(event)
 {
     x = event.clientX;
     y = event.clientY;
 });
 
 /* Création des postits */
-
 postit1.addEventListener('click', function()
 {
-    zone.addEventListener('mousedown', function()
+        zone.addEventListener('mousedown', function()
         {
-            monTest = new PostIt(x, y, "white", "#BF1736");
+            i = i + 1;
+            monTest = new PostIt(x, y, "white", "#BF1736", i);
             monTest.affichePostit();
         });
-});
+});/*
 
 postit2.addEventListener('click', function()
 {
@@ -78,4 +102,23 @@ postit3.addEventListener('click', function()
             monTest = new PostIt(x, y, "white", "#1438A6");
             monTest.affichePostit();
         });
-});
+}); */
+
+monTest = new PostIt(500, 500, "red", "#1438A6", i);
+monTest.affichePostit();
+
+/* Faire bouger un Postit */
+
+document.addEventListener('mouseup', () => {
+    onBouge = false;
+})
+
+function refresh() {
+    if (onBouge) {
+        monTest.changePlace(x, y);
+        monTest.affichePostit();
+    }
+    setTimeout(refresh, 50)
+}
+
+refresh();
