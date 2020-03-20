@@ -1,3 +1,8 @@
+/* Variables Global */
+var x;
+var y;
+
+/* Objet Postit */
 class PostIt {
     x;
     y;
@@ -32,12 +37,45 @@ class PostIt {
     }
 }
 
-document.addEventListener('click', function()
+/* Importation des éléments HMTL + Position souris dans la page */
+
+var postit1 = document.querySelector(".post-1");
+var postit2 = document.querySelector(".post-2");
+var postit3 = document.querySelector(".post-3");
+
+var zone = document.querySelector(".post-js");
+
+document.body.addEventListener('mousemove', function souris(event)
 {
-    monTest = new PostIt(700, 500, '#BF1736', '#1438A6');
-    monTest.affichePostit();
-}); 
+    x = event.clientX;
+    y = event.clientY;
+});
 
-monTest = new PostIt(500, 200, '#BF1736', '#1438A6');
-monTest.affichePostit();
+/* Création des postits */
 
+postit1.addEventListener('click', function()
+{
+    zone.addEventListener('mousedown', function()
+        {
+            monTest = new PostIt(x, y, "white", "#BF1736");
+            monTest.affichePostit();
+        });
+});
+
+postit2.addEventListener('click', function()
+{
+    zone.addEventListener('mousedown', function()
+        {
+            monTest = new PostIt(x, y, "white", "#0D1440");
+            monTest.affichePostit();
+        });
+});
+
+postit3.addEventListener('click', function()
+{
+    zone.addEventListener('mousedown', function()
+        {
+            monTest = new PostIt(x, y, "white", "#1438A6");
+            monTest.affichePostit();
+        });
+});
