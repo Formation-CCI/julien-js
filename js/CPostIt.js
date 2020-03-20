@@ -12,11 +12,11 @@ class PostIt
     couleurTexte;
     couleurBackground;
 
-    constructor(posX, posY, couleurTexte, couleurBackground, numPosIt) 
+    constructor(posX, posY, couleurTexte, couleurBackground, numPostIt) 
     {
         this.posX = posX;
         this.posY = posY;
-        this.numPosIt = numPosIt;
+        this.numPostIt = numPostIt;
         this.couleurTexte = couleurTexte;
         this.couleurBackground = couleurBackground;
     }
@@ -30,18 +30,23 @@ class PostIt
     affichePostit() 
     {
         let postit;
+        let creation = false;
 
         // Si le Postit n'existe pas on le crée
-        if (document.getElementById('postit') == null) 
+        if (document.getElementById('postIt') == null)
+        {
+            console.log(document.getElementById('postIt'));
             postit = document.createElement('div');
+            creation = true;
+        }
         else
         {
-            postit = document.getElementById('postit');
-            postit.classList.add('postit-js');
+            postit = document.getElementById('postIt');
         }
 
         // Paramétrage du Postit
-        postit.id = "postIt" + this.numPosIt;
+        postit.id = "postIt";
+        postit.classList.add('post-it-notes');
         postit.style.position = "fixed";
         postit.style.top = this.posY + "px";
         postit.style.left = this.posX + "px";
@@ -49,11 +54,14 @@ class PostIt
         postit.style.height = "150px";
         postit.style.color = this.couleurTexte;
         postit.style.backgroundColor = this.couleurBackground;
-        postit.style.padding = "5px"; 
-        postit.innerHTML = "Je suis un objet de test";
+        postit.style.padding = "2em"; 
+        postit.innerHTML = "<p>Je suis un objet de test</p>";
 
         // Ajout du Postit dans la page 
-        zone.appendChild(postit);
+        if(creation)
+        {
+            zone.appendChild(postit);
+        }
 
         // Action lorsqu'on clique sur le postit
         postit.addEventListener('click', () => {
@@ -69,13 +77,14 @@ var postit2 = document.querySelector(".post-2");
 var postit3 = document.querySelector(".post-3");
 var zone = document.querySelector(".post-js");
 
-zone.addEventListener('mousemove', function souris(event)
+document.addEventListener('mousemove', function souris(event)
 {
     x = event.clientX;
     y = event.clientY;
 });
 
 /* Création des postits */
+/*
 postit1.addEventListener('click', function()
 {
         zone.addEventListener('mousedown', function()
@@ -84,7 +93,7 @@ postit1.addEventListener('click', function()
             monTest = new PostIt(x, y, "white", "#BF1736", i);
             monTest.affichePostit();
         });
-});/*
+});
 
 postit2.addEventListener('click', function()
 {
@@ -104,8 +113,9 @@ postit3.addEventListener('click', function()
         });
 }); */
 
-monTest = new PostIt(500, 500, "red", "#1438A6", i);
+monTest = new PostIt(500, 500, "black", "rgb(255,215,7)", i);
 monTest.affichePostit();
+
 
 /* Faire bouger un Postit */
 
