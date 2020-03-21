@@ -58,3 +58,11 @@ h2
     min-height: 10em;
     box-shadow: 7px 7px 3px -2px #00000047;
  }
+
+ #but
+ {
+     height: 50px;
+     width: 200px;
+     background-color: brown;
+     color: red;
+ }
