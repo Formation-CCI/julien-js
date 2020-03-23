@@ -3,14 +3,15 @@ let x;
 let y;
 let couleur;
 let i;
+let classPostit;
 let onBouge = false;
 let idBouge = 0;
 var tableauPostit = new Array();
 
 /* Importation des éléments HMTL */
-var postit1 = document.querySelector(".post-1");
-var postit2 = document.querySelector(".post-2");
-var postit3 = document.querySelector(".post-3");
+var postit1 = document.querySelector(".postit-1");
+var postit2 = document.querySelector(".postit-2");
+var postit3 = document.querySelector(".postit-3");
 var zone = document.querySelector(".post-js");
 
 /* Evenement */
@@ -27,21 +28,24 @@ document.addEventListener('mouseup', () => {
 // Postit 1
 postit1.addEventListener('mousedown', () => {
     couleur = "#f8de59";
+    classPostit = "post-1";
 });
 
 // Postit 2
 postit2.addEventListener('mousedown', () => {
     couleur = "#E0B746";
+    classPostit = "post-2";
 });
 
 // Postit 3
 postit3.addEventListener('mousedown', () => {
     couleur = "#FCBC4E";
+    classPostit = "post-3";
 });
 
 /* Création du postit */
 zone.addEventListener('mousedown', () => {
-    let newpostit = new Postit(x, y, 300, 250, "black", couleur, tableauPostit.length + 1);
+    let newpostit = new Postit(x, y, 300, 250, "black", couleur, classPostit, tableauPostit.length + 1);
     tableauPostit.push(newpostit);
     tableauPostit[(tableauPostit.length - 1)].afficheTest();
 });

@@ -6,15 +6,17 @@ class Postit {
     largeur;
     couleurTexte;
     couleurBackground;
+    classPostit;
     i;
     
-    constructor(posX, posY, hauteur, largeur, couleurTexte, couleurBackground, i) {
+    constructor(posX, posY, hauteur, largeur, couleurTexte, couleurBackground, classPostit, i) {
         this.posX = posX;
         this.posY = posY;
         this.hauteur = hauteur;
         this.largeur = largeur;
         this.couleurTexte = couleurTexte;
         this.couleurBackground = couleurBackground;
+        this.classPostit = classPostit;
         this.i = i;
     }
 
@@ -38,7 +40,7 @@ class Postit {
             monElem = document.getElementById("PostIt" + this.i);
 
         // Propriété du postit
-        monElem.classList.add('post-it-notes');
+        monElem.classList.add(this.classPostit);
         monElem.style.position = "fixed";
         monElem.style.top = this.posY + "px";
         monElem.style.left = this.posX + "px";
