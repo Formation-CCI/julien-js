@@ -4,6 +4,8 @@ let y;
 let i = 0;
 let onBouge = false;
 let onTaille = false;
+let onWrite = false;
+let text ="";
 
 /* Importation des éléments HMTL */
 var postit1 = document.querySelector(".post-1");
@@ -22,6 +24,11 @@ document.addEventListener('mousemove', function souris(event)
 document.addEventListener('mouseup', () => {
     onBouge = false;
     onTaille = false;
+})
+
+/* Lorsque l'on relache les touches du clavier */
+document.addEventListener('keyup', () => {
+    onWrite = false;
 })
 
 /* Objet Postit */
@@ -62,6 +69,7 @@ class PostIt
         let postit;
         let buttonMove;
         let buttonTaille;
+        let affichageText;
         let creation = false;
 
         // Si le Postit n'existe pas on le crée
@@ -86,6 +94,11 @@ class PostIt
         postit.style.padding = "2em"; 
         postit.innerHTML = "<p>Je suis un objet de test</p>";
         
+        //  Affichage du texte dans la postit
+        affichageText = document.createElement('p');
+        affichageText.innerHTML = text;
+        postit.appendChild(affichageText);
+
         // Ajout du Postit dans la page 
         if(creation)
         {
@@ -110,6 +123,12 @@ class PostIt
         // Action lorsqu'on clique sur le buttonTaille
         buttonTaille.addEventListener('mousedown', () => {
             onTaille = true;
+        })
+
+        // Action lorsqu'on écris du text
+        document.addEventListener('keydown', (event) => {
+            text = text + event.key;
+            onWrite = true;
         })
     }
 }
@@ -156,8 +175,11 @@ function refresh() {
     if (onTaille) {
         monTest.changeTaille(x, y);
         monTest.affichePostit();
+    } 
+    
+    if (onWrite) {
+        monTest.affichePostit();
     }
-
     setTimeout(refresh, 50)
 }
 refresh();
