@@ -5,6 +5,7 @@ let couleur;
 let i;
 let classPostit;
 let onBouge = false;
+let onTaille = false;
 let idBouge = 0;
 var tableauPostit = new Array();
 
@@ -23,6 +24,7 @@ document.addEventListener('mousemove', position => {
 document.addEventListener('mouseup', () => {
     idBouge = 0;
     onBouge = false;
+    onTaille = false;
 })
 
 // Postit 1
@@ -57,25 +59,29 @@ function refresh() {
         tableauPostit[(idBouge - 1)].changePlace(x, y);
         tableauPostit[(idBouge - 1)].afficheTest();
     }
+
+    if (onTaille && idBouge != 0) {
+        tableauPostit[(idBouge - 1)].changeTaille(y, x);
+        tableauPostit[(idBouge - 1)].afficheTest();
+    }
     setTimeout(refresh, 50)
 }
 
 refresh();
 
 /* Bouton du postit */
-function jdeAttachElem(parentId, elem, classElem = [], idElem = "", fonct = "") {
+function AjoutBouton(parentId, elem, classElem = [], idElem = "", fonct = "") {
     let elemACreer = document.createElement(elem)
     if (classElem.length > 0) {
         for (let uneClasse in classElem) {
             elemACreer.classList.add(classElem[uneClasse])
         }
     }
-    if (idElem != "") {
-        elemACreer.id = idElem
-    }
-    if (fonct != "") {
+    if (idElem != "")
+        elemACreer.id = idElem;
+    if (fonct != "")
         elemACreer.addEventListener('click', fonct);
-    }
+        
     document.getElementById(parentId).appendChild(elemACreer)
 }
 
