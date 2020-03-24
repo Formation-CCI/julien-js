@@ -59,6 +59,8 @@ h2
 
 /* Postit 1 */
 .post-1 {
+    min-width: 250px;
+    min-height: 250px;
     background-color: #f8de59;
     width: 16em;
     min-height: 14em;
@@ -92,6 +94,8 @@ h2
 
 /* Postit 2 */
 .post-2 {
+    min-width: 250px;
+    min-height: 250px;
     background-color: #E0B746;
     width: 16em;
     min-height: 14em;
@@ -125,6 +129,8 @@ h2
 
 /* Postit 3 */
 .post-3 {
+    min-width: 250px;
+    min-height: 250px;
     background-color: #FCBC4E;
     width: 16em;
     min-height: 14em;
@@ -154,4 +160,13 @@ h2
     border-style: solid;
     border-color: #FCBC4E transparent;
     filter: drop-shadow(-4px 5px 9px rgba(0,0,0,0.3));
+}
+
+/* Bouton Postit */
+.basDroite
+{
+    margin-top: 20px;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-around;
 }
