@@ -59,6 +59,7 @@ h2
 
 /* Postit 1 */
 .post-1 {
+    outline: none;
     min-width: 250px;
     min-height: 250px;
     background-color: #f8de59;
@@ -94,6 +95,7 @@ h2
 
 /* Postit 2 */
 .post-2 {
+    outline: none;
     min-width: 250px;
     min-height: 250px;
     background-color: #E0B746;
@@ -129,6 +131,7 @@ h2
 
 /* Postit 3 */
 .post-3 {
+    outline: none;
     min-width: 250px;
     min-height: 250px;
     background-color: #FCBC4E;
@@ -169,4 +172,9 @@ h2
     font-size: 20px;
     display: flex;
     justify-content: space-around;
+}
+
+.fas:hover
+{
+    cursor: pointer;
 }
