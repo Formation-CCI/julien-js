@@ -20,6 +20,10 @@ class Postit {
         this.i = i;
     }
 
+    toString() {
+        return '{"x":' + this.posX + ',"y":' + this.posY + ',"Hauteur":"' + this.hauteur + '","Largeur":"' + this.largeur + '","Couleur du texte":"' + this.couleurTexte + '","Couleur de fond":"' + this.couleurBackground + '","Postit":"' + this.i + '"}'
+    }
+    
     changePlace(x, y) {
         this.posX = x;
         this.posY = y;

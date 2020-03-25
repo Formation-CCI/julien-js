@@ -63,6 +63,8 @@ zone.addEventListener('mousedown', () => {
  * @param {string[]} tableauPostit - tableau contenant les postits
  */
 function refresh() {
+    tableauPostit.toString();
+
     if (onBouge && idBouge != 0) {
         console.log("on déplace !")
         tableauPostit[(idBouge - 1)].changePlace(x, y);
